@@ -1,6 +1,15 @@
 import { Routes } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 export const routes: Routes = [
-    { path: '', component: DashboardComponent }
+    {
+        path: '',
+        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+    },
+    {
+        path: '',
+        redirectTo: '',
+        pathMatch: 'full'
+    },
+    { path: '**', component: NotFoundComponent }
 ];
